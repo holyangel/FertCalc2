@@ -150,8 +150,8 @@
                         Margin="5"
                         Clicked="SaveMixButton_Clicked"/>
                     <Label Text="Fertilizers " FontSize="Medium" Grid.Row="1" Grid.Column="1" WidthRequest="125"/>
-                    <Label Text=" Grams/Gal" FontSize="Medium" Grid.Row="1" Grid.Column="2" WidthRequest="125"/>
-                    
+                    <Button x:Name="ToggleUnitButton" Text="Switch to mL/L" Clicked="ToggleUnitButton_Clicked" Grid.Row="1" Grid.Column="2" WidthRequest="125"/>
+
                     <!-- Fertilizer Selection -->
                     <Label Text="BioBizz Algamic" Grid.Row="2" Grid.Column="1"/>
                         <Entry x:Name="BioBizzAlgamicBox" Placeholder="Quantity" Grid.Row="2" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>

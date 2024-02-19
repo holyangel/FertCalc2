@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+using System.Xml.Serialization;
 
 namespace FertCalc
 {
@@ -33,6 +33,8 @@ namespace FertCalc
         private Dictionary<string, Entry> fertilizerEntryMappings;
         private Dictionary<string, Dictionary<string, double>> savedMixes = new Dictionary<string, Dictionary<string, double>>();
         private string mixesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UserMixes.xml");
+        private bool isPerGallon = true; // Default to gallons
+        private double ConversionFactor => isPerGallon ? 1 : 3.78541;
 
         public MainPage()
         {
@@ -100,24 +102,62 @@ namespace FertCalc
             };
         }
 
+        private void ToggleUnitButton_Clicked(object sender, EventArgs e)
+        {
+            isPerGallon = !isPerGallon; // Toggle the flag
+            ToggleUnitButton.Text = isPerGallon ? "Switch to mL/L" : "Switch to g/gal"; // Update button text
+            UpdateNutrientDisplays(); // Recalculate and update the display
+        }
+
         private void OnQuantityChanged(object sender, TextChangedEventArgs e)
         {
+            var conversionFactor = isPerGallon ? 1 : 1 * 3.78541; // Convert to per liter if not isPerGallon, otherwise leave as per gallon.
+
             var totals = fertilizerService.CalculateTotals(fertilizerEntryMappings);
             
             // Update UI with calculated totals
-            TotalNitrogen.Text = $"(N): {totals["N"]:N2}";
-            TotalPhosphorous.Text = $"(P): {totals["P"]:N2}";
-            TotalPotassium.Text = $"(K): {totals["K"]:N2}";
-            TotalMagnesium.Text = $"(Mg): {totals["Mg"]:N2}";
-            TotalCalcium.Text = $"(Ca): {totals["Ca"]:N2}";
-            TotalSulfur.Text = $"(S): {totals["S"]:N2}";
-            TotalIron.Text = $"(Fe): {totals["Fe"]:N2}";
-            TotalZinc.Text = $"(Zn): {totals["Zn"]:N2}";
-            TotalBoron.Text = $"(B): {totals["B"]:N2}";
-            TotalManganese.Text = $"(Mn): {totals["Mn"]:N2}";
-            TotalCopper.Text = $"(Cu): {totals["Cu"]:N2}";
-            TotalMolybdenum.Text = $"(Mo): {totals["Mo"]:N2}";
-            PPM.Text = $"PPM: {totals["PPM"]:N2}";
+            TotalNitrogen.Text = $"(N): {(totals["N"] * conversionFactor):N2}";
+            TotalPhosphorous.Text = $"(P): {(totals["P"] * conversionFactor):N2}";
+            TotalPotassium.Text = $"(K): {(totals["K"] * conversionFactor):N2}";
+            TotalMagnesium.Text = $"(Mg): {(totals["Mg"] * conversionFactor):N2}";
+            TotalCalcium.Text = $"(Ca): {(totals["Ca"] * conversionFactor):N2}";
+            TotalSulfur.Text = $"(S): {(totals["S"] * conversionFactor):N2}";
+            TotalIron.Text = $"(Fe): {(totals["Fe"] * conversionFactor):N2}";
+            TotalZinc.Text = $"(Zn): {(totals["Zn"] * conversionFactor):N2}";
+            TotalBoron.Text = $"(B): {(totals["B"] * conversionFactor):N2}";
+            TotalManganese.Text = $"(Mn): {(totals["Mn"] * conversionFactor):N2}";
+            TotalCopper.Text = $"(Cu): {(totals["Cu"] * conversionFactor):N2}";
+            TotalMolybdenum.Text = $"(Mo): {(totals["Mo"] * conversionFactor):N2}";
+            PPM.Text = $"PPM: {(totals["PPM"] * conversionFactor):N2}";
+        }
+
+        private void UpdateNutrientDisplays()
+        {
+            // Example conversion (adjust according to your calculation logic)
+            var conversionFactor = isPerGallon ? 1 : 1 * 3.78541; // Convert to per liter if not isPerGallon, otherwise leave as per gallon.
+
+            var totals = fertilizerService.CalculateTotals(fertilizerEntryMappings);
+
+            // Adjust each value by the conversionFactor before displaying
+            TotalNitrogen.Text = $"(N): {(totals["N"] * conversionFactor):N2}";
+            TotalPhosphorous.Text = $"(P): {(totals["P"] * conversionFactor):N2}";
+            TotalPotassium.Text = $"(K): {(totals["K"] * conversionFactor):N2}";
+            TotalMagnesium.Text = $"(Mg): {(totals["Mg"] * conversionFactor):N2}";
+            TotalCalcium.Text = $"(Ca): {(totals["Ca"] * conversionFactor):N2}";
+            TotalSulfur.Text = $"(S): {(totals["S"] * conversionFactor):N2}";
+            TotalIron.Text = $"(Fe): {(totals["Fe"] * conversionFactor):N2}";
+            TotalZinc.Text = $"(Zn): {(totals["Zn"] * conversionFactor):N2}";
+            TotalBoron.Text = $"(B): {(totals["B"] * conversionFactor):N2}";
+            TotalManganese.Text = $"(Mn): {(totals["Mn"] * conversionFactor):N2}";
+            TotalCopper.Text = $"(Cu): {(totals["Cu"] * conversionFactor):N2}";
+            TotalMolybdenum.Text = $"(Mo): {(totals["Mo"] * conversionFactor):N2}";
+            PPM.Text = $"PPM: {(totals["PPM"] * conversionFactor):N2}";
+
+            // If you have a comparison feature, apply similar conversion to the comparison values
+            if (ComparisonMixesPicker.SelectedItem != null && ComparisonMixesPicker.SelectedItem.ToString() != "Reset")
+            {
+                ApplyComparisonMixDetails(savedMixes[ComparisonMixesPicker.SelectedItem.ToString()]);
+            }
         }
 
         private void AttachTextChangedEventHandlers()
@@ -287,6 +327,7 @@ namespace FertCalc
                 if (fertilizerEntryMappings.TryGetValue(detail.Key, out var entry))
                 {
                     entry.Text = detail.Value.ToString();
+                    UpdateNutrientDisplays();
                 }
             }
         }
@@ -305,20 +346,20 @@ namespace FertCalc
             {
                 if (fertilizerService.Fertilizers.TryGetValue(detail.Key, out var fertilizer))
                 {
-                    // Assuming each 'fertilizer' has properties like N, P, K, etc., representing nutrient percentages
-                    totals["N"] += fertilizer.N * detail.Value;
-                    totals["P"] += fertilizer.P * detail.Value;
-                    totals["K"] += fertilizer.K * detail.Value;
-                    totals["Mg"] += fertilizer.Mg * detail.Value;
-                    totals["Ca"] += fertilizer.Ca * detail.Value;
-                    totals["S"] += fertilizer.S * detail.Value;
-                    totals["Fe"] += fertilizer.Fe * detail.Value;
-                    totals["Zn"] += fertilizer.Zn * detail.Value;
-                    totals["B"] += fertilizer.B * detail.Value;
-                    totals["Mn"] += fertilizer.Mn * detail.Value;
-                    totals["Cu"] += fertilizer.Cu * detail.Value;
-                    totals["Mo"] += fertilizer.Mo * detail.Value;
-                    totals["PPM"] += fertilizer.PPM * detail.Value;
+                    // Multiplying each value by detail.Value and then by ConversionFactor for the unit conversion
+                    totals["N"] += (fertilizer.N * detail.Value) * ConversionFactor;
+                    totals["P"] += (fertilizer.P * detail.Value) * ConversionFactor;
+                    totals["K"] += (fertilizer.K * detail.Value) * ConversionFactor;
+                    totals["Mg"] += (fertilizer.Mg * detail.Value) * ConversionFactor;
+                    totals["Ca"] += (fertilizer.Ca * detail.Value) * ConversionFactor;
+                    totals["S"] += (fertilizer.S * detail.Value) * ConversionFactor;
+                    totals["Fe"] += (fertilizer.Fe * detail.Value) * ConversionFactor;
+                    totals["Zn"] += (fertilizer.Zn * detail.Value) * ConversionFactor;
+                    totals["B"] += (fertilizer.B * detail.Value) * ConversionFactor;
+                    totals["Mn"] += (fertilizer.Mn * detail.Value) * ConversionFactor;
+                    totals["Cu"] += (fertilizer.Cu * detail.Value) * ConversionFactor;
+                    totals["Mo"] += (fertilizer.Mo * detail.Value) * ConversionFactor;
+                    totals["PPM"] += (fertilizer.PPM * detail.Value) * ConversionFactor;
                 }
             }
 
