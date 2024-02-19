@@ -103,6 +103,7 @@
                     </Grid.RowDefinitions>
 
                 <Label Text="Select Fertilizers" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
+                <Label Text="Grams/ml per Gallon" FontSize="Medium" Grid.Row="0" Grid.Column="2" />
                 <!-- Fertilizer Selection -->
                 <Label Text="BioBizz Algamic" Grid.Row="1" Grid.Column="1"/>
                 <Entry x:Name="BioBizzAlgamicBox" Placeholder="Quantity" Grid.Row="1" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
