@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+using System.Xml.Serialization;
 
 namespace FertCalc
 {
@@ -341,9 +341,7 @@ namespace FertCalc
         private void UpdateAndColorLabel(Label label, double comparisonValue, string nutrientKey)
         {
             // Attempt to retrieve the current mix's value for this nutrient.
-            double currentMixValue = 0;
-
-            if (fertilizerService.CalculateTotals(fertilizerEntryMappings).TryGetValue(nutrientKey, out currentMixValue))
+            if (fertilizerService.CalculateTotals(fertilizerEntryMappings).TryGetValue(nutrientKey, out double currentMixValue))
             {
                 // Update the label with the comparison value.
                 label.Text = $"({nutrientKey}): {comparisonValue:N2}";
