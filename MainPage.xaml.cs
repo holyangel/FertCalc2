@@ -1,4 +1,4 @@
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace FertCalc
 {
@@ -168,7 +168,7 @@ namespace FertCalc
         {
             LoadMixesFromFile(); // Reload mixes from file
             PopulateMixesPicker(); // Repopulate Picker
-            PopulateComparisonMixesPicker();
+            PopulateComparisonMixesPicker(); // Repopulate Comparison Picker
         }
 
         private void PredefinedMixesPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,13 +177,13 @@ namespace FertCalc
 
             if (string.IsNullOrEmpty(selectedMix) || selectedMix == "Reset")
             {
-                PredefinedMixesPicker.SelectedIndex = 0;
-                ClearAllEntries();
+                ClearAllEntries(); // Clear fertilizer quantities
+                PredefinedMixesPicker.SelectedIndex = -1; // Reset selection to default
             }
             else if (savedMixes.ContainsKey(selectedMix))
             {
-                ClearAllEntries();
-                ApplyMixDetails(savedMixes[selectedMix]);
+                ClearAllEntries(); // Clear fertilizer quantities before applying from dictionary
+                ApplyMixDetails(savedMixes[selectedMix]); // Apply quantities from dictionary
             }
         }
 
@@ -193,9 +193,9 @@ namespace FertCalc
 
             if (string.IsNullOrEmpty(selectedMix) || selectedMix == "Reset")
             {
-                ComparisonMixesPicker.SelectedIndex = 0;
-                HideComparisonVisibility();
-                ResetComparisonLabels(); // Optional: Clear comparison values
+                HideComparisonVisibility(); // Hide all the Comparison Labels
+                ResetComparisonLabels(); // Clear comparison values
+                ComparisonMixesPicker.SelectedIndex = -1; // Reset selection to default
             }
             else if (savedMixes.ContainsKey(selectedMix))
             {
