@@ -1,4 +1,4 @@
-﻿namespace FertCalc
+namespace FertCalc
 {
     public partial class MainPage : ContentPage
     {
@@ -72,19 +72,19 @@
             var totals = fertilizerService.CalculateTotals(fertilizerEntryMappings);
             
             // Update UI with calculated totals
-            TotalNitrogen.Text = $"Total Nitrogen (N): {totals["N"]:N2}";
-            TotalPhosphorous.Text = $"Phosphorous: {totals["P"]:N2}";
-            TotalPotassium.Text = $"Potassium: {totals["K"]:N2}";
-            TotalMagnesium.Text = $"Magnesium: {totals["Mg"]:N2}";
-            TotalCalcium.Text = $"Calcium: {totals["Ca"]:N2}";
-            TotalSulfur.Text = $"Sulfur: {totals["S"]:N2}";
-            TotalIron.Text = $"Iron: {totals["Fe"]:N2}";
-            TotalZinc.Text = $"Zinc: {totals["Zn"]:N2}";
-            TotalBoron.Text = $"Boron: {totals["B"]:N2}";
-            TotalManganese.Text = $"Manganese: {totals["Mn"]:N2}";
-            TotalCopper.Text = $"Copper: {totals["Cu"]:N2}";
-            TotalMolybdenum.Text = $"Molybdenum: {totals["Mo"]:N2}";
-            TotalPPM.Text = $"Total PPM: {totals["TotalPPM"]:N2}";
+            TotalNitrogen.Text = $"(N): {totals["N"]:N2}";
+            TotalPhosphorous.Text = $"(P): {totals["P"]:N2}";
+            TotalPotassium.Text = $"(K): {totals["K"]:N2}";
+            TotalMagnesium.Text = $"(Mg): {totals["Mg"]:N2}";
+            TotalCalcium.Text = $"(Ca): {totals["Ca"]:N2}";
+            TotalSulfur.Text = $"(S): {totals["S"]:N2}";
+            TotalIron.Text = $"(Fe): {totals["Fe"]:N2}";
+            TotalZinc.Text = $"(Zn): {totals["Zn"]:N2}";
+            TotalBoron.Text = $"(B): {totals["B"]:N2}";
+            TotalManganese.Text = $"(Mn): {totals["Mn"]:N2}";
+            TotalCopper.Text = $"(Cu): {totals["Cu"]:N2}";
+            TotalMolybdenum.Text = $"(Mo): {totals["Mo"]:N2}";
+            TotalPPM.Text = $"PPM: {totals["TotalPPM"]:N2}";
         }
 
         private void AttachTextChangedEventHandlers()

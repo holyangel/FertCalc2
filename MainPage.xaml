@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FertCalc.MainPage"
@@ -27,30 +27,26 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!-- Totals Labels  -->
-            <Label Text="Total Elements" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-            <Label x:Name="TotalNitrogen" Text="Total Nitrogen (N): " Grid.Row="1" Grid.Column="0"/>
-            <Label x:Name="TotalPhosphorous" Text="Phosphorous: " Grid.Row="2" Grid.Column="0"/>
-            <Label x:Name="TotalPotassium" Text="Potassium: " Grid.Row="3" Grid.Column="0"/>
-            <Label x:Name="TotalMagnesium" Text="Magnesium: " Grid.Row="4" Grid.Column="0"/>
-            <Label x:Name="TotalCalcium" Text="Calcium: " Grid.Row="5" Grid.Column="0"/>
-            <Label x:Name="TotalSulfur" Text="Sulfur: " Grid.Row="6" Grid.Column="0"/>
-            <Label x:Name="TotalIron" Text="Iron: " Grid.Row="7" Grid.Column="0"/>
-            <Label x:Name="TotalZinc" Text="Zinc: " Grid.Row="8" Grid.Column="0"/>
-            <Label x:Name="TotalBoron" Text="Boron: " Grid.Row="9" Grid.Column="0"/>
-            <Label x:Name="TotalManganese" Text="Manganese: " Grid.Row="10" Grid.Column="0"/>
-            <Label x:Name="TotalCopper" Text="Copper: " Grid.Row="11" Grid.Column="0"/>
-            <Label x:Name="TotalMolybdenum" Text="Molybdenum: " Grid.Row="12" Grid.Column="0"/>
-            <Label x:Name="TotalPPM" Text="Total PPM: " Grid.Row="13" Grid.Column="0"/>
+            <Label Text="Elements" FontSize="Medium" Grid.Row="0" Grid.Column="0" WidthRequest="125"/>
+            <Label x:Name="TotalNitrogen" Text="(N): " Grid.Row="1" Grid.Column="0"/>
+            <Label x:Name="TotalPhosphorous" Text="(P): " Grid.Row="2" Grid.Column="0"/>
+            <Label x:Name="TotalPotassium" Text="(K): " Grid.Row="3" Grid.Column="0"/>
+            <Label x:Name="TotalMagnesium" Text="(Mg}: " Grid.Row="4" Grid.Column="0"/>
+            <Label x:Name="TotalCalcium" Text="(Ca): " Grid.Row="5" Grid.Column="0"/>
+            <Label x:Name="TotalSulfur" Text="(S): " Grid.Row="6" Grid.Column="0"/>
+            <Label x:Name="TotalIron" Text="(Fe): " Grid.Row="7" Grid.Column="0"/>
+            <Label x:Name="TotalZinc" Text="(Zn): " Grid.Row="8" Grid.Column="0"/>
+            <Label x:Name="TotalBoron" Text="(B): " Grid.Row="9" Grid.Column="0"/>
+            <Label x:Name="TotalManganese" Text="(Mn): " Grid.Row="10" Grid.Column="0"/>
+            <Label x:Name="TotalCopper" Text="(Cu): " Grid.Row="11" Grid.Column="0"/>
+            <Label x:Name="TotalMolybdenum" Text="(Mo): " Grid.Row="12" Grid.Column="0"/>
+            <Label x:Name="TotalPPM" Text="PPM: " Grid.Row="13" Grid.Column="0"/>
         </Grid>
 
-        <ScrollView AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional" AbsoluteLayout.LayoutBounds=".2,0,.8,1">
-            <VerticalStackLayout Spacing="25" Padding="30">
-                <Grid ColumnDefinitions="*,*,*" RowSpacing="10">
-                <!-- Column 0: Fertilizer Label -->
-                <!-- Column 1: Fertilizer Entry -->
-                <!-- Column 2: Spacer -->
-                <!-- Column 3: Total Label -->
-                <Grid.RowDefinitions>
+        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0" HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Spacing="0" HorizontalOptions="FillAndExpand">
+                <Grid ColumnDefinitions="125,*,Auto" RowSpacing="0" HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
