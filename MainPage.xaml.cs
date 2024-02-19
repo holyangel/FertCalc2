@@ -1,15 +1,46 @@
-﻿namespace FertCalc
+﻿using System.Xml.Serialization;
+
+namespace FertCalc
 {
+    [XmlRoot("MixCollection")]
+    public class MixCollection
+    {
+        [XmlElement("Mix")]
+        public List<Mix> Mixes { get; set; } = new List<Mix>();
+    }
+
+    public class Mix
+    {
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
+        [XmlArray("Fertilizers"), XmlArrayItem("Fertilizer")]
+        public List<FertilizerQuantity> FertilizerQuantities { get; set; } = new List<FertilizerQuantity>();
+    }
+
+    public class FertilizerQuantity
+    {
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("quantity")]
+        public double Quantity { get; set; }
+    }
+
     public partial class MainPage : ContentPage
     {
-        private FertilizerService fertilizerService = new FertilizerService();
+        private readonly FertilizerService fertilizerService = new FertilizerService();
         private Dictionary<string, Entry> fertilizerEntryMappings;
+        private Dictionary<string, Dictionary<string, double>> savedMixes = new Dictionary<string, Dictionary<string, double>>();
+        private readonly string mixesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UserMixes.xml");
 
         public MainPage()
         {
             InitializeComponent();
             InitializeFertilizerEntryMappings();
             AttachTextChangedEventHandlers();
+            LoadMixesFromFile();
+            PopulateMixesPicker();
         }
 
         private void InitializeFertilizerEntryMappings()
@@ -92,6 +123,164 @@
             foreach (var entry in fertilizerEntryMappings.Values)
             {
                 entry.TextChanged += OnQuantityChanged;
+            }
+        }
+
+        private void PopulateMixesPicker()
+        {
+            PredefinedMixesPicker.Items.Clear(); // Clear existing items first
+
+            // Add "Reset" option first
+            PredefinedMixesPicker.Items.Add("Reset");
+
+            // Extract mix names and sort them
+            var sortedMixNames = savedMixes.Keys.ToList();
+            sortedMixNames.Sort();
+
+            // Add sorted mix names to the Picker
+            foreach (var mixName in sortedMixNames)
+            {
+                PredefinedMixesPicker.Items.Add(mixName);
+            }
+        }
+
+        private void RefreshMixesInPicker()
+        {
+            LoadMixesFromFile(); // Reload mixes from file
+            PopulateMixesPicker(); // Repopulate Picker
+        }
+
+        private void PredefinedMixesPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedMix = PredefinedMixesPicker.SelectedItem as string;
+
+            if (string.IsNullOrEmpty(selectedMix) || selectedMix == "Reset")
+            {
+                PredefinedMixesPicker.SelectedIndex = 0;
+                ClearAllEntries();
+            }
+            else if (savedMixes.ContainsKey(selectedMix))
+            {
+                ApplyMixDetails(savedMixes[selectedMix]);
+            }
+        }
+
+        private void ClearAllEntries()
+        {
+            foreach (var entry in fertilizerEntryMappings.Values)
+            {
+                entry.Text = string.Empty;
+            }
+
+            TotalNitrogen.Text = "(N): ";
+            TotalPhosphorous.Text = "(P): ";
+            TotalPotassium.Text = "(K): ";
+            TotalMagnesium.Text = "(Mg): ";
+            TotalCalcium.Text = "(Ca): ";
+            TotalSulfur.Text = "(S): ";
+            TotalIron.Text = "(Fe): ";
+            TotalZinc.Text = "(Zn): ";
+            TotalBoron.Text = "(B): ";
+            TotalManganese.Text = "(Mn): ";
+            TotalCopper.Text = "(Cu): ";
+            TotalMolybdenum.Text = "(Mo): ";
+            TotalPPM.Text = "PPM: ";
+        }
+
+        private void ApplyMixDetails(Dictionary<string, double> mixDetails)
+        {
+            foreach (var detail in mixDetails)
+            {
+                if (fertilizerEntryMappings.TryGetValue(detail.Key, out var entry))
+                {
+                    entry.Text = detail.Value.ToString();
+                }
+            }
+        }
+
+        private MixCollection ConvertToSerializableForm()
+        {
+            var mixCollection = new MixCollection();
+            foreach (var mixEntry in savedMixes)
+            {
+                var mix = new Mix { Name = mixEntry.Key };
+                foreach (var fertEntry in mixEntry.Value)
+                {
+                    mix.FertilizerQuantities.Add(new FertilizerQuantity { Name = fertEntry.Key, Quantity = fertEntry.Value });
+                }
+                mixCollection.Mixes.Add(mix);
+            }
+            return mixCollection;
+        }
+
+        private async void SaveMixButton_Clicked(object sender, EventArgs e)
+        {
+            // Prompt user for a mix name
+            string mixName = await DisplayPromptAsync("Save Mix", "Enter a name for this mix:");
+
+            if (string.IsNullOrWhiteSpace(mixName))
+            {
+                // User cancelled or entered an invalid name
+                await DisplayAlert("Error", "Invalid mix name.", "OK");
+                return;
+            }
+
+            if (savedMixes.ContainsKey(mixName))
+            {
+                // Ask if they want to overwrite the existing mix
+                bool overwrite = await DisplayAlert("Confirm", "A mix with this name already exists. Overwrite?", "Yes", "No");
+                if (!overwrite) return;
+            }
+
+            // Capture current fertilizer quantities
+            Dictionary<string, double> mixDetails = new Dictionary<string, double>();
+            foreach (var entry in fertilizerEntryMappings)
+            {
+                string text = entry.Value.Text;
+                if (!string.IsNullOrWhiteSpace(text) && double.TryParse(text, out double quantity))
+                {
+                    mixDetails[entry.Key] = quantity;
+                }
+            }
+
+            // Save or update the mix
+            savedMixes[mixName] = mixDetails;
+
+            // Persist the changes
+            SaveMixesToFile();
+
+            // Refresh the picker items to include the new/updated mix
+            RefreshMixesInPicker();
+
+            // Optionally, select the newly saved mix in the picker
+            PredefinedMixesPicker.SelectedItem = mixName;
+
+            await DisplayAlert("Saved", $"Mix '{mixName}' has been saved.", "OK");
+        }
+
+        private void SaveMixesToFile()
+        {
+            var mixCollection = ConvertToSerializableForm();
+            var serializer = new XmlSerializer(typeof(MixCollection));
+            using (var writer = new StreamWriter(mixesFilePath))
+            {
+                serializer.Serialize(writer, mixCollection);
+            }
+        }
+
+        private void LoadMixesFromFile()
+        {
+            if (File.Exists(mixesFilePath))
+            {
+                var serializer = new XmlSerializer(typeof(MixCollection));
+                using (var reader = new StreamReader(mixesFilePath))
+                {
+                    var mixCollection = (MixCollection)serializer.Deserialize(reader);
+                    savedMixes = mixCollection.Mixes.ToDictionary(
+                        mix => mix.Name,
+                        mix => mix.FertilizerQuantities.ToDictionary(fq => fq.Name, fq => fq.Quantity)
+                    );
+                }
             }
         }
     }
