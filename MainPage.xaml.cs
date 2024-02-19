@@ -32,7 +32,7 @@ namespace FertCalc
         private readonly FertilizerService fertilizerService = new FertilizerService();
         private Dictionary<string, Entry> fertilizerEntryMappings;
         private Dictionary<string, Dictionary<string, double>> savedMixes = new Dictionary<string, Dictionary<string, double>>();
-        private readonly string mixesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UserMixes.xml");
+        private string mixesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UserMixes.xml");
 
         public MainPage()
         {
@@ -41,6 +41,8 @@ namespace FertCalc
             AttachTextChangedEventHandlers();
             LoadMixesFromFile();
             PopulateMixesPicker();
+            PopulateComparisonMixesPicker();
+
         }
 
         private void InitializeFertilizerEntryMappings()
@@ -115,7 +117,7 @@ namespace FertCalc
             TotalManganese.Text = $"(Mn): {totals["Mn"]:N2}";
             TotalCopper.Text = $"(Cu): {totals["Cu"]:N2}";
             TotalMolybdenum.Text = $"(Mo): {totals["Mo"]:N2}";
-            TotalPPM.Text = $"PPM: {totals["TotalPPM"]:N2}";
+            PPM.Text = $"PPM: {totals["PPM"]:N2}";
         }
 
         private void AttachTextChangedEventHandlers()
@@ -144,10 +146,29 @@ namespace FertCalc
             }
         }
 
+        private void PopulateComparisonMixesPicker()
+        {
+            ComparisonMixesPicker.Items.Clear(); // Clear existing items first
+
+            // Add "Reset" option first
+            ComparisonMixesPicker.Items.Add("Reset");
+
+            // Extract mix names and sort them
+            var sortedMixNames = savedMixes.Keys.ToList();
+            sortedMixNames.Sort();
+
+            // Add sorted mix names to the Picker
+            foreach (var mixName in sortedMixNames)
+            {
+                ComparisonMixesPicker.Items.Add(mixName);
+            }
+        }
+
         private void RefreshMixesInPicker()
         {
             LoadMixesFromFile(); // Reload mixes from file
             PopulateMixesPicker(); // Repopulate Picker
+            PopulateComparisonMixesPicker();
         }
 
         private void PredefinedMixesPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,8 +182,80 @@ namespace FertCalc
             }
             else if (savedMixes.ContainsKey(selectedMix))
             {
+                ClearAllEntries();
                 ApplyMixDetails(savedMixes[selectedMix]);
             }
+        }
+
+        private void ComparisonMixesPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedMix = ComparisonMixesPicker.SelectedItem as string;
+
+            if (string.IsNullOrEmpty(selectedMix) || selectedMix == "Reset")
+            {
+                ComparisonMixesPicker.SelectedIndex = 0;
+                HideComparisonVisibility();
+                ResetComparisonLabels(); // Optional: Clear comparison values
+            }
+            else if (savedMixes.ContainsKey(selectedMix))
+            {
+                ShowComparisonVisibility();
+                ApplyComparisonMixDetails(savedMixes[selectedMix]);
+            }
+        }
+
+        private void ShowComparisonVisibility()
+        {
+            // Setting the visibility of all comparison elements at once
+            CompNitrogen.IsVisible = true;
+            CompPhosphorous.IsVisible = true;
+            CompPotassium.IsVisible = true;
+            CompMagnesium.IsVisible = true;
+            CompCalcium.IsVisible = true;
+            CompSulfur.IsVisible = true;
+            CompIron.IsVisible = true;
+            CompZinc.IsVisible = true;
+            CompBoron.IsVisible = true;
+            CompManganese.IsVisible = true;
+            CompCopper.IsVisible = true;
+            CompMolybdenum.IsVisible = true;
+            CompPPM.IsVisible = true;
+        }
+
+        private void HideComparisonVisibility()
+        {
+            // Setting the visibility of all comparison elements at once
+            CompNitrogen.IsVisible = false;
+            CompPhosphorous.IsVisible = false;
+            CompPotassium.IsVisible = false;
+            CompMagnesium.IsVisible = false;
+            CompCalcium.IsVisible = false;
+            CompSulfur.IsVisible = false;
+            CompIron.IsVisible = false;
+            CompZinc.IsVisible = false;
+            CompBoron.IsVisible = false;
+            CompManganese.IsVisible = false;
+            CompCopper.IsVisible = false;
+            CompMolybdenum.IsVisible = false;
+            CompPPM.IsVisible = false;
+        }
+
+        private void ResetComparisonLabels()
+        {
+            // Reset the text of all comparison labels to indicate no data
+            CompNitrogen.Text = "(N): ";
+            CompPhosphorous.Text = "(P): ";
+            CompPotassium.Text = "(K): ";
+            CompMagnesium.Text = "(Mg): ";
+            CompCalcium.Text = "(Ca): ";
+            CompSulfur.Text = "(S): ";
+            CompIron.Text = "(Fe): ";
+            CompZinc.Text = "(Zn): ";
+            CompBoron.Text = "(B): ";
+            CompManganese.Text = "(Mn): ";
+            CompCopper.Text = "(Cu): ";
+            CompMolybdenum.Text = "(Mo): ";
+            CompPPM.Text = "PPM: ";
         }
 
         private void ClearAllEntries()
@@ -184,7 +277,7 @@ namespace FertCalc
             TotalManganese.Text = "(Mn): ";
             TotalCopper.Text = "(Cu): ";
             TotalMolybdenum.Text = "(Mo): ";
-            TotalPPM.Text = "PPM: ";
+            PPM.Text = "PPM: ";
         }
 
         private void ApplyMixDetails(Dictionary<string, double> mixDetails)
@@ -195,6 +288,85 @@ namespace FertCalc
                 {
                     entry.Text = detail.Value.ToString();
                 }
+            }
+        }
+
+        private void ApplyComparisonMixDetails(Dictionary<string, double> mixDetails)
+        {
+            // Initialize nutrient totals for comparison
+            var totals = new Dictionary<string, double>
+            {
+                {"N", 0}, {"P", 0}, {"K", 0}, {"Mg", 0}, {"Ca", 0}, {"S", 0},
+                {"Fe", 0}, {"Zn", 0}, {"B", 0}, {"Mn", 0}, {"Cu", 0}, {"Mo", 0}, {"PPM", 0}
+            };
+
+            // Calculate total nutrients based on the mix details
+            foreach (var detail in mixDetails)
+            {
+                if (fertilizerService.Fertilizers.TryGetValue(detail.Key, out var fertilizer))
+                {
+                    // Assuming each 'fertilizer' has properties like N, P, K, etc., representing nutrient percentages
+                    totals["N"] += fertilizer.N * detail.Value;
+                    totals["P"] += fertilizer.P * detail.Value;
+                    totals["K"] += fertilizer.K * detail.Value;
+                    totals["Mg"] += fertilizer.Mg * detail.Value;
+                    totals["Ca"] += fertilizer.Ca * detail.Value;
+                    totals["S"] += fertilizer.S * detail.Value;
+                    totals["Fe"] += fertilizer.Fe * detail.Value;
+                    totals["Zn"] += fertilizer.Zn * detail.Value;
+                    totals["B"] += fertilizer.B * detail.Value;
+                    totals["Mn"] += fertilizer.Mn * detail.Value;
+                    totals["Cu"] += fertilizer.Cu * detail.Value;
+                    totals["Mo"] += fertilizer.Mo * detail.Value;
+                    totals["PPM"] += fertilizer.PPM * detail.Value;
+                }
+            }
+
+            // Update and color the comparison labels
+            UpdateAndColorLabel(CompNitrogen, totals["N"], "N");
+            UpdateAndColorLabel(CompPhosphorous, totals["P"], "P");
+            UpdateAndColorLabel(CompPotassium, totals["K"], "K");
+            UpdateAndColorLabel(CompMagnesium, totals["Mg"], "Mg");
+            UpdateAndColorLabel(CompCalcium, totals["Ca"], "Ca");
+            UpdateAndColorLabel(CompSulfur, totals["S"], "S");
+            UpdateAndColorLabel(CompIron, totals["Fe"], "Fe");
+            UpdateAndColorLabel(CompZinc, totals["Zn"], "Zn");
+            UpdateAndColorLabel(CompBoron, totals["B"], "B");
+            UpdateAndColorLabel(CompManganese, totals["Mn"], "Mn");
+            UpdateAndColorLabel(CompCopper, totals["Cu"], "Cu");
+            UpdateAndColorLabel(CompMolybdenum, totals["Mo"], "Mo");
+            UpdateAndColorLabel(CompPPM, totals["PPM"], "PPM");
+        }
+
+        private void UpdateAndColorLabel(Label label, double comparisonValue, string nutrientKey)
+        {
+            // Attempt to retrieve the current mix's value for this nutrient.
+            double currentMixValue = 0;
+
+            if (fertilizerService.CalculateTotals(fertilizerEntryMappings).TryGetValue(nutrientKey, out currentMixValue))
+            {
+                // Update the label with the comparison value.
+                label.Text = $"({nutrientKey}): {comparisonValue:N2}";
+
+                // Determine the color based on the comparison.
+                if (comparisonValue > currentMixValue)
+                {
+                    label.TextColor = Colors.Green;
+                }
+                else if (comparisonValue < currentMixValue)
+                {
+                    label.TextColor = Colors.Red;
+                }
+                else
+                {
+                    // Use the default text color for the label, adapting to theme changes.
+                    label.TextColor = Application.Current.UserAppTheme == AppTheme.Dark ? Colors.Black : Colors.White;
+                }
+            }
+            else
+            {
+                // If for some reason the nutrient key is not found, log or handle the error.
+                Console.WriteLine($"Nutrient key '{nutrientKey}' not found in current totals.");
             }
         }
 
