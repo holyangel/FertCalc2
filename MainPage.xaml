@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FertCalc.MainPage"
+             Title="Fertilizer Calculator">
+
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!-- Totals Grid -->
+        <Grid AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional" AbsoluteLayout.LayoutBounds="0,0,.2,1" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- Totals Labels  -->
+            <Label Text="Total Elements" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+            <Label x:Name="TotalNitrogen" Text="Total Nitrogen (N): " Grid.Row="1" Grid.Column="0"/>
+            <Label x:Name="TotalPhosphorous" Text="Phosphorous: " Grid.Row="2" Grid.Column="0"/>
+            <Label x:Name="TotalPotassium" Text="Potassium: " Grid.Row="3" Grid.Column="0"/>
+            <Label x:Name="TotalMagnesium" Text="Magnesium: " Grid.Row="4" Grid.Column="0"/>
+            <Label x:Name="TotalCalcium" Text="Calcium: " Grid.Row="5" Grid.Column="0"/>
+            <Label x:Name="TotalSulfur" Text="Sulfur: " Grid.Row="6" Grid.Column="0"/>
+            <Label x:Name="TotalIron" Text="Iron: " Grid.Row="7" Grid.Column="0"/>
+            <Label x:Name="TotalZinc" Text="Zinc: " Grid.Row="8" Grid.Column="0"/>
+            <Label x:Name="TotalBoron" Text="Boron: " Grid.Row="9" Grid.Column="0"/>
+            <Label x:Name="TotalManganese" Text="Manganese: " Grid.Row="10" Grid.Column="0"/>
+            <Label x:Name="TotalCopper" Text="Copper: " Grid.Row="11" Grid.Column="0"/>
+            <Label x:Name="TotalMolybdenum" Text="Molybdenum: " Grid.Row="12" Grid.Column="0"/>
+            <Label x:Name="TotalPPM" Text="Total PPM: " Grid.Row="13" Grid.Column="0"/>
+        </Grid>
+
+        <ScrollView AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional" AbsoluteLayout.LayoutBounds=".2,0,.8,1">
+            <VerticalStackLayout Spacing="25" Padding="30">
+                <Grid ColumnDefinitions="*,*,*" RowSpacing="10">
+                <!-- Column 0: Fertilizer Label -->
+                <!-- Column 1: Fertilizer Entry -->
+                <!-- Column 2: Spacer -->
+                <!-- Column 3: Total Label -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                <Label Text="Select Fertilizers" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
+                <!-- Fertilizer Selection -->
+                <Label Text="BioBizz Algamic" Grid.Row="1" Grid.Column="1"/>
+                <Entry x:Name="BioBizzAlgamicBox" Placeholder="Quantity" Grid.Row="1" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="BioBizz Bloom" Grid.Row="2" Grid.Column="1"/>
+                <Entry x:Name="BioBizzBloomBox" Placeholder="Quantity" Grid.Row="2" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="BioBizzGrow" Grid.Row="3" Grid.Column="1"/>
+                <Entry x:Name="BioBizzGrowBox" Placeholder="Quantity" Grid.Row="3" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="CaliMagic" Grid.Row="4" Grid.Column="1"/>
+                <Entry x:Name="CaliMagicBox" Placeholder="Quantity" Grid.Row="4" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Calmag" Grid.Row="5" Grid.Column="1"/>
+                <Entry x:Name="CannaCalmagBox" Placeholder="Quantity" Grid.Row="5" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="CannaCoco A" Grid.Row="6" Grid.Column="1"/>
+                <Entry x:Name="CannaCocoABox" Placeholder="Quantity" Grid.Row="6" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="CannaCoco B" Grid.Row="7" Grid.Column="1"/>
+                <Entry x:Name="CannaCocoBBox" Placeholder="Quantity" Grid.Row="7" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Flores" Grid.Row="8" Grid.Column="1"/>
+                <Entry x:Name="CannaFloresBox" Placeholder="Quantity" Grid.Row="8" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna PH Down" Grid.Row="9" Grid.Column="1"/>
+                <Entry x:Name="CannaPHDownBox" Placeholder="Quantity" Grid.Row="9" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna PK 13/14" Grid.Row="10" Grid.Column="1"/>
+                <Entry x:Name="CannaPK1314Box" Placeholder="Quantity" Grid.Row="10" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Vega" Grid.Row="11" Grid.Column="1"/>
+                <Entry x:Name="CannaVegaBox" Placeholder="Quantity" Grid.Row="11" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="DryPart Bloom" Grid.Row="12" Grid.Column="1"/>
+                <Entry x:Name="DryPartBloomBox" Placeholder="Quantity" Grid.Row="12" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Epsom Salt" Grid.Row="13" Grid.Column="1"/>
+                <Entry x:Name="EpsomSaltBox" Placeholder="Quantity" Grid.Row="13" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Gypsum" Grid.Row="14" Grid.Column="1"/>
+                <Entry x:Name="GypsumBox" Placeholder="Quantity" Grid.Row="14" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 0-12-26" Grid.Row="15" Grid.Column="1"/>
+                <Entry x:Name="Jacks01226Box" Placeholder="Quantity" Grid.Row="15" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 5-50-18" Grid.Row="16" Grid.Column="1"/>
+                <Entry x:Name="Jacks51226Box" Placeholder="Quantity" Grid.Row="16" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 5-50-18" Grid.Row="17" Grid.Column="1"/>
+                <Entry x:Name="Jacks55018Box" Placeholder="Quantity" Grid.Row="17" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 7-15-30" Grid.Row="18" Grid.Column="1"/>
+                <Entry x:Name="Jacks71530Box" Placeholder="Quantity" Grid.Row="18" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 10-30-20" Grid.Row="19" Grid.Column="1"/>
+                <Entry x:Name="Jacks103020Box" Placeholder="Quantity" Grid.Row="19" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 12-4-16" Grid.Row="20" Grid.Column="1"/>
+                <Entry x:Name="Jacks12416Box" Placeholder="Quantity" Grid.Row="20" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 15-0-0" Grid.Row="21" Grid.Column="1"/>
+                <Entry x:Name="Jacks1500Box" Placeholder="Quantity" Grid.Row="21" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 15-5-20" Grid.Row="22" Grid.Column="1"/>
+                <Entry x:Name="Jacks15520Box" Placeholder="Quantity" Grid.Row="22" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 15-6-17" Grid.Row="23" Grid.Column="1"/>
+                <Entry x:Name="Jacks15617Box" Placeholder="Quantity" Grid.Row="23" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 18-8-23" Grid.Row="24" Grid.Column="1"/>
+                <Entry x:Name="Jacks18823Box" Placeholder="Quantity" Grid.Row="24" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 20-10-20" Grid.Row="25" Grid.Column="1"/>
+                <Entry x:Name="Jacks201020Box" Placeholder="Quantity" Grid.Row="25" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 20-20-20" Grid.Row="26" Grid.Column="1"/>
+                <Entry x:Name="Jacks202020Box" Placeholder="Quantity" Grid.Row="26" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="K-Trate LX" Grid.Row="27" Grid.Column="1"/>
+                <Entry x:Name="KTrateLXBox" Placeholder="Quantity" Grid.Row="27" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Koolbloom" Grid.Row="28" Grid.Column="1"/>
+                <Entry x:Name="KoolbloomBox" Placeholder="Quantity" Grid.Row="28" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="L.Koolbloom" Grid.Row="29" Grid.Column="1"/>
+                <Entry x:Name="LKoolbloomBox" Placeholder="Quantity" Grid.Row="29" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MagNit" Grid.Row="30" Grid.Column="1"/>
+                <Entry x:Name="MagNitBox" Placeholder="Quantity" Grid.Row="30" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MAG-Trate LX" Grid.Row="31" Grid.Column="1"/>
+                <Entry x:Name="MagTrateLXBox" Placeholder="Quantity" Grid.Row="31" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MAP" Grid.Row="32" Grid.Column="1"/>
+                <Entry x:Name="MAPBox" Placeholder="Quantity" Grid.Row="32" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MaxiBloom" Grid.Row="33" Grid.Column="1"/>
+                <Entry x:Name="MaxiBloomBox" Placeholder="Quantity" Grid.Row="33" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MaxiGrow" Grid.Row="34" Grid.Column="1"/>
+                <Entry x:Name="MaxiGrowBox" Placeholder="Quantity" Grid.Row="34" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Megacrop" Grid.Row="35" Grid.Column="1"/>
+                <Entry x:Name="MegacropBox" Placeholder="Quantity" Grid.Row="35" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Megacrop A" Grid.Row="36" Grid.Column="1"/>
+                <Entry x:Name="MegacropABox" Placeholder="Quantity" Grid.Row="36" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Megacrop B" Grid.Row="37" Grid.Column="1"/>
+                <Entry x:Name="MegacropBBox" Placeholder="Quantity" Grid.Row="37" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MC Cal-Mag" Grid.Row="38" Grid.Column="1"/>
+                <Entry x:Name="MCCalMagBox" Placeholder="Quantity" Grid.Row="38" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MC Sweet Candy" Grid.Row="39" Grid.Column="1"/>
+                <Entry x:Name="MCSweetCandyBox" Placeholder="Quantity" Grid.Row="39" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MOAB" Grid.Row="40" Grid.Column="1"/>
+                <Entry x:Name="MOABBox" Placeholder="Quantity" Grid.Row="40" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Monster Bloom" Grid.Row="41" Grid.Column="1"/>
+                <Entry x:Name="MonsterBloomBox" Placeholder="Quantity" Grid.Row="41" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MPK" Grid.Row="42" Grid.Column="1"/>
+                <Entry x:Name="MPKBox" Placeholder="Quantity" Grid.Row="42" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Bloom" Grid.Row="43" Grid.Column="1"/>
+                <Entry x:Name="PPBloomBox" Placeholder="Quantity" Grid.Row="43" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Boost" Grid.Row="44" Grid.Column="1"/>
+                <Entry x:Name="PPBoostBox" Placeholder="Quantity" Grid.Row="44" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP CalKick" Grid.Row="45" Grid.Column="1"/>
+                <Entry x:Name="PPCalKickBox" Placeholder="Quantity" Grid.Row="45" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Finisher" Grid.Row="46" Grid.Column="1"/>
+                <Entry x:Name="PPFinisherBox" Placeholder="Quantity" Grid.Row="46" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Grow" Grid.Row="47" Grid.Column="1"/>
+                <Entry x:Name="PPGrowBox" Placeholder="Quantity" Grid.Row="47" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Spike" Grid.Row="48" Grid.Column="1"/>
+                <Entry x:Name="PPSpikeBox" Placeholder="Quantity" Grid.Row="48" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <!-- Add more fertilizers as needed -->
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </AbsoluteLayout>
+</ContentPage>
