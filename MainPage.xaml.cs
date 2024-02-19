@@ -1,4 +1,4 @@
-namespace FertCalc
+﻿namespace FertCalc
 {
     public partial class MainPage : ContentPage
     {
