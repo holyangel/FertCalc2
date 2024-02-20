@@ -57,19 +57,19 @@
             <Label x:Name="TotalMolybdenum" Text="(Mo): " Grid.Row="12" Grid.Column="0"/>
             <Label x:Name="PPM" Text="PPM: " Grid.Row="13" Grid.Column="0"/>
 
-            <Label x:Name="CompNitrogen" Text="(N): " Grid.Row="16" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompPhosphorous" Text="(P): " Grid.Row="17" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompPotassium" Text="(K): " Grid.Row="18" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompMagnesium" Text="(Mg}: " Grid.Row="19" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompCalcium" Text="(Ca): " Grid.Row="20" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompSulfur" Text="(S): " Grid.Row="21" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompIron" Text="(Fe): " Grid.Row="22" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompZinc" Text="(Zn): " Grid.Row="23" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompBoron" Text="(B): " Grid.Row="24" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompManganese" Text="(Mn): " Grid.Row="25" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompCopper" Text="(Cu): " Grid.Row="26" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompMolybdenum" Text="(Mo): " Grid.Row="27" Grid.Column="0" IsVisible="False"/>
-            <Label x:Name="CompPPM" Text="PPM: " Grid.Row="28" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompNitrogen" Text="(N): " Grid.Row="17" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompPhosphorous" Text="(P): " Grid.Row="18" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompPotassium" Text="(K): " Grid.Row="19" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompMagnesium" Text="(Mg}: " Grid.Row="20" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompCalcium" Text="(Ca): " Grid.Row="21" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompSulfur" Text="(S): " Grid.Row="22" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompIron" Text="(Fe): " Grid.Row="23" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompZinc" Text="(Zn): " Grid.Row="24" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompBoron" Text="(B): " Grid.Row="25" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompManganese" Text="(Mn): " Grid.Row="26" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompCopper" Text="(Cu): " Grid.Row="27" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompMolybdenum" Text="(Mo): " Grid.Row="28" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="CompPPM" Text="PPM: " Grid.Row="29" Grid.Column="0" IsVisible="False"/>
         </Grid>
 
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0" HorizontalOptions="FillAndExpand">
