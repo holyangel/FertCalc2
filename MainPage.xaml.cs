@@ -253,6 +253,7 @@ namespace FertCalc
         private void ShowComparisonVisibility()
         {
             // Setting the visibility of all comparison elements at once
+            Compare.IsVisible = true;
             CompNitrogen.IsVisible = true;
             CompPhosphorous.IsVisible = true;
             CompPotassium.IsVisible = true;
@@ -271,6 +272,7 @@ namespace FertCalc
         private void HideComparisonVisibility()
         {
             // Setting the visibility of all comparison elements at once
+            Compare.IsVisible = false;
             CompNitrogen.IsVisible = false;
             CompPhosphorous.IsVisible = false;
             CompPotassium.IsVisible = false;
