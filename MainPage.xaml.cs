@@ -129,6 +129,12 @@ namespace FertCalc
             TotalCopper.Text = $"(Cu): {(totals["Cu"] * conversionFactor):N2}";
             TotalMolybdenum.Text = $"(Mo): {(totals["Mo"] * conversionFactor):N2}";
             PPM.Text = $"PPM: {(totals["PPM"] * conversionFactor):N2}";
+
+            // If you have a comparison feature, apply similar conversion to the comparison values
+            if (ComparisonMixesPicker.SelectedItem != null && ComparisonMixesPicker.SelectedItem.ToString() != "Reset")
+            {
+                ApplyComparisonMixDetails(savedMixes[ComparisonMixesPicker.SelectedItem.ToString()]);
+            }
         }
 
         private void UpdateNutrientDisplays()
@@ -384,27 +390,28 @@ namespace FertCalc
             // Attempt to retrieve the current mix's value for this nutrient.
             if (fertilizerService.CalculateTotals(fertilizerEntryMappings).TryGetValue(nutrientKey, out double currentMixValue))
             {
+                double convertedCurrentMixValue = currentMixValue * ConversionFactor;
                 // Update the label with the comparison value.
                 label.Text = $"({nutrientKey}): {comparisonValue:N2}";
 
                 // Determine the color based on the comparison.
-                if (comparisonValue > currentMixValue)
+                if (comparisonValue > convertedCurrentMixValue)
                 {
                     label.TextColor = Colors.Green;
                 }
-                else if (comparisonValue < currentMixValue)
+                else if (comparisonValue < convertedCurrentMixValue)
                 {
                     label.TextColor = Colors.Red;
                 }
                 else
                 {
-                    // Use the default text color for the label, adapting to theme changes.
+                    // If values are equal, use a neutral color
                     label.TextColor = Application.Current.UserAppTheme == AppTheme.Dark ? Colors.Black : Colors.White;
                 }
             }
             else
             {
-                // If for some reason the nutrient key is not found, log or handle the error.
+                // Log or handle the error if the nutrient key is not found
                 Console.WriteLine($"Nutrient key '{nutrientKey}' not found in current totals.");
             }
         }
