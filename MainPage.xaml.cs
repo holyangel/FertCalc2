@@ -105,7 +105,7 @@ namespace FertCalc2
         private void ToggleUnitButton_Clicked(object sender, EventArgs e)
         {
             isPerGallon = !isPerGallon; // Toggle the flag
-            ToggleUnitButton.Text = isPerGallon ? "Switch to mL/L" : "Switch to g/gal"; // Update button text
+            ToggleUnitButton.Text = isPerGallon ? "Switch to mL/L" : "Switch to g/Gal"; // Update button text
             UpdateNutrientDisplays(); // Recalculate and update the display
         }
 
