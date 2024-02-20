@@ -393,22 +393,23 @@ namespace FertCalc2
             if (fertilizerService.CalculateTotals(fertilizerEntryMappings).TryGetValue(nutrientKey, out double currentMixValue))
             {
                 double convertedCurrentMixValue = currentMixValue * ConversionFactor;
+                double epsilon = 0.01; // Small value to account for floating-point precision issues
+
                 // Update the label with the comparison value.
                 label.Text = $"({nutrientKey}): {comparisonValue:N2}";
 
-                // Determine the color based on the comparison.
-                if (comparisonValue > convertedCurrentMixValue)
+                // Adjust comparison logic to use epsilon for floating-point comparison
+                if (Math.Abs(comparisonValue - convertedCurrentMixValue) < epsilon)
+                {
+                    label.TextColor = Colors.DodgerBlue;
+                }
+                else if (comparisonValue > convertedCurrentMixValue)
                 {
                     label.TextColor = Colors.Green;
                 }
-                else if (comparisonValue < convertedCurrentMixValue)
-                {
-                    label.TextColor = Colors.Red;
-                }
                 else
                 {
-                    // If values are equal, use a neutral color
-                    label.TextColor = Application.Current.UserAppTheme == AppTheme.Dark ? Colors.Black : Colors.White;
+                    label.TextColor = Colors.Red;
                 }
             }
             else
