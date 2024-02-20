@@ -1,4 +1,4 @@
-﻿namespace FertCalc
+﻿namespace FertCalc2
 {
     public partial class AppShell : Shell
     {

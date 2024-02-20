@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace FertCalc
+namespace FertCalc2
 {
     [XmlRoot("MixCollection")]
     public class MixCollection

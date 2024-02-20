@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace FertCalc
+namespace FertCalc2
 {
     public static class MauiProgram
     {
