@@ -24,7 +24,7 @@ namespace FertCalc2
         public double PPM { get; set; } // Total parts per million
 
         // Constructor to initialize a Fertilizer object with all nutrient values
-        public Fertilizer(string name, double n, double p, double k, double mg, double ca, double s, double fe, double zn, double b, double mn, double cu, double mo, double PPM)
+        public Fertilizer(string name, double n, double p, double k, double mg, double ca, double s, double fe, double zn, double b, double mn, double cu, double mo, double ppm)
         {
             Name = name;
             N = n;
@@ -39,7 +39,7 @@ namespace FertCalc2
             Mn = mn;
             Cu = cu;
             Mo = mo;
-            PPM = PPM;
+            PPM = ppm;
         }
 
         // Default constructor
