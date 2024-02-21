@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="125" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
@@ -49,7 +49,7 @@
                 <RowDefinition Height="22"/>
             </Grid.RowDefinitions>
             <!-- Totals Labels  -->
-            <Label Text="Elements" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+            <Label x:Name="Elements" Text="Elements" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" LineBreakMode="WordWrap"/>
             <Label x:Name="TotalNitrogen" Text="(N): " Grid.Row="1" Grid.Column="0"/>
             <Label x:Name="TotalPhosphorous" Text="(P): " Grid.Row="2" Grid.Column="0"/>
             <Label x:Name="TotalPotassium" Text="(K): " Grid.Row="3" Grid.Column="0"/>

@@ -240,12 +240,14 @@ namespace FertCalc2
             if (string.IsNullOrEmpty(selectedMix) || selectedMix == "Reset")
             {
                 ClearAllEntries(); // Clear fertilizer quantities
+                Elements.Text = "Elements"; // Reset the Elements label
                 PredefinedMixesPicker.SelectedIndex = -1; // Reset selection to default
             }
             else if (savedMixes.ContainsKey(selectedMix))
             {
                 ClearAllEntries(); // Clear fertilizer quantities before applying from dictionary
                 ApplyMixDetails(savedMixes[selectedMix]); // Apply quantities from dictionary
+                Elements.Text = $"{selectedMix}"; // Update the Compare label to show the selected mix name
             }
         }
 
