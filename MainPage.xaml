@@ -149,7 +149,7 @@
                         <!-- Items will be added programmatically -->
                     </Picker>
                     <Button x:Name="SaveMixButton"
-                        Text="Save Mix"
+                        Text="Save"
                         Grid.Row="0" Grid.Column="2"
                         Margin="5"
                         Clicked="SaveMixButton_Clicked"/>
