@@ -259,12 +259,14 @@ namespace FertCalc2
             {
                 HideComparisonVisibility(); // Hide all the Comparison Labels
                 ResetComparisonLabels(); // Clear comparison values
+                Compare.Text = "Compare"; // Reset the Compare label
                 ComparisonMixesPicker.SelectedIndex = -1; // Reset selection to default
             }
             else if (savedMixes.ContainsKey(selectedMix))
             {
                 ShowComparisonVisibility();
                 ApplyComparisonMixDetails(savedMixes[selectedMix]);
+                Compare.Text = $"{selectedMix}"; // Update the Compare label to show the selected mix name
             }
         }
 

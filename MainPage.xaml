@@ -32,7 +32,7 @@
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
@@ -64,7 +64,7 @@
             <Label x:Name="TotalMolybdenum" Text="(Mo): " Grid.Row="12" Grid.Column="0"/>
             <Label x:Name="PPM" Text="PPM: " Grid.Row="13" Grid.Column="0"/>
 
-            <Label x:Name="Compare" Text="Compare" FontSize="Medium" Grid.Row="15" Grid.Column="0" IsVisible="False"/>
+            <Label x:Name="Compare" Text="Compare" Grid.Row="15" Grid.Column="0" IsVisible="False" FontAttributes="Bold" LineBreakMode="WordWrap"/>
             <Label x:Name="CompNitrogen" Text="(N): " Grid.Row="16" Grid.Column="0" IsVisible="False"/>
             <Label x:Name="CompPhosphorous" Text="(P): " Grid.Row="17" Grid.Column="0" IsVisible="False"/>
             <Label x:Name="CompPotassium" Text="(K): " Grid.Row="18" Grid.Column="0" IsVisible="False"/>
