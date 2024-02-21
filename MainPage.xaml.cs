@@ -33,6 +33,7 @@ namespace FertCalc2
         private Dictionary<string, Entry> fertilizerEntryMappings;
         private Dictionary<string, Dictionary<string, double>> savedMixes = new Dictionary<string, Dictionary<string, double>>();
         private string mixesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UserMixes.xml");
+        private readonly object fileAccessLock = new object();
         private bool isPerGallon = true; // Default to gallons
         private double ConversionFactor => isPerGallon ? 1 : 3.78541;
 
@@ -481,28 +482,35 @@ namespace FertCalc2
 
         private void SaveMixesToFile()
         {
-            var mixCollection = ConvertToSerializableForm();
-            var serializer = new XmlSerializer(typeof(MixCollection));
-            using (var writer = new StreamWriter(mixesFilePath))
+            lock (fileAccessLock)
             {
-                serializer.Serialize(writer, mixCollection);
+                var mixCollection = ConvertToSerializableForm();
+                var serializer = new XmlSerializer(typeof(MixCollection));
+                using (var writer = new StreamWriter(mixesFilePath))
+                {
+                    serializer.Serialize(writer, mixCollection);
+                }
             }
         }
 
         private void LoadMixesFromFile()
         {
-            if (File.Exists(mixesFilePath))
+            lock (fileAccessLock)
             {
-                var serializer = new XmlSerializer(typeof(MixCollection));
-                using (var reader = new StreamReader(mixesFilePath))
+                if (File.Exists(mixesFilePath))
                 {
-                    var mixCollection = (MixCollection)serializer.Deserialize(reader);
-                    savedMixes = mixCollection.Mixes.ToDictionary(
-                        mix => mix.Name,
-                        mix => mix.FertilizerQuantities.ToDictionary(fq => fq.Name, fq => fq.Quantity)
-                    );
+                    var serializer = new XmlSerializer(typeof(MixCollection));
+                    using (var reader = new StreamReader(mixesFilePath))
+                    {
+                        var mixCollection = (MixCollection)serializer.Deserialize(reader);
+                        savedMixes = mixCollection.Mixes.ToDictionary(
+                            mix => mix.Name,
+                            mix => mix.FertilizerQuantities.ToDictionary(fq => fq.Name, fq => fq.Quantity)
+                        );
+                    }
                 }
-
+            }
+        }
 
         private async void DeleteMixButton_Clicked(object sender, EventArgs e)
         {
@@ -525,6 +533,77 @@ namespace FertCalc2
                     ClearAllEntries(); // Optional: Clear the current mix details from the UI
                     await DisplayAlert("Delete Mix", $"Mix '{selectedMix}' has been deleted.", "OK");
                 }
+            }
+        }
+
+        private async void OnImportClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var fileResult = await FilePicker.PickAsync();
+                if (fileResult != null)
+                {
+                    var importFilePath = fileResult.FullPath;
+
+                    // Deserialize the imported mixes
+                    MixCollection importedMixes;
+                    var serializer = new XmlSerializer(typeof(MixCollection));
+                    using (var reader = new StreamReader(importFilePath))
+                    {
+                        importedMixes = (MixCollection)serializer.Deserialize(reader);
+                    }
+
+                    // Merge with existing mixes
+                    bool newMixesAdded = false;
+                    foreach (var mix in importedMixes.Mixes)
+                    {
+                        if (!savedMixes.ContainsKey(mix.Name))
+                        {
+                            savedMixes.Add(mix.Name, mix.FertilizerQuantities.ToDictionary(fq => fq.Name, fq => fq.Quantity));
+                            newMixesAdded = true;
+                        }
+                    }
+
+                    if (newMixesAdded)
+                    {
+                        SaveMixesToFile(); // Save the updated list
+                        RefreshMixesInPicker();
+                        await DisplayAlert("Import Successful", "New mixes have been added.", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Import Notice", "No new mixes to add.", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Import Failed", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
+
+        private async void OnExportClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                // Assuming mixesFilePath is the path to your existing UserMixes.xml
+                if (File.Exists(mixesFilePath))
+                {
+                    // Use Share API to share the file
+                    await Share.RequestAsync(new ShareFileRequest
+                    {
+                        Title = "Export User Mixes",
+                        File = new ShareFile(mixesFilePath)
+                    });
+                }
+                else
+                {
+                    await DisplayAlert("Export Failed", "UserMixes.xml not found.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Export Failed", $"An error occurred: {ex.Message}", "OK");
             }
         }
     }

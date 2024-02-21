@@ -4,6 +4,11 @@
              x:Class="FertCalc2.MainPage"
              Title="Fertilizer Calculator">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Import" Clicked="OnImportClicked" />
+        <ToolbarItem Text="Share" Clicked="OnExportClicked" />
+    </ContentPage.ToolbarItems>
+    
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <!-- Totals Grid -->
         <Grid AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional" AbsoluteLayout.LayoutBounds="0,-10.5,.2,1" Padding="10">
