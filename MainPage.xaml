@@ -8,9 +8,10 @@
         <!-- Totals Grid -->
         <Grid AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional" AbsoluteLayout.LayoutBounds="0,-10.5,.2,1" Padding="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="115" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
@@ -25,8 +26,7 @@
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
-                <RowDefinition Height="22"/>
-                <RowDefinition Height="22"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
                 <RowDefinition Height="22"/>
@@ -76,59 +76,59 @@
 
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0" HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Spacing="0" HorizontalOptions="FillAndExpand">
-                <Grid ColumnDefinitions="125,*,Auto" RowSpacing="0" HorizontalOptions="FillAndExpand">
+                <Grid ColumnDefinitions="115,125,80,80" RowSpacing="0" ColumnSpacing="-5" HorizontalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="54"/>
+                        <RowDefinition Height="54"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
                     </Grid.RowDefinitions>
 
                     <Picker x:Name="PredefinedMixesPicker"
