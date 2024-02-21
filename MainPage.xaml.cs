@@ -34,7 +34,7 @@ namespace FertCalc2
         private Dictionary<string, Dictionary<string, double>> savedMixes = new Dictionary<string, Dictionary<string, double>>();
         private string mixesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UserMixes.xml");
         private readonly object fileAccessLock = new object();
-        private bool isPerGallon = true; // Default to gallons
+        private bool isPerGallon;
         private double ConversionFactor => isPerGallon ? 1 : 3.78541;
 
         public MainPage()
@@ -46,6 +46,11 @@ namespace FertCalc2
             PopulateMixesPicker();
             PopulateComparisonMixesPicker();
 
+            // Load the saved unit preference using Preferences
+            isPerGallon = Preferences.Get("IsPerGallon", true); // Default to true if not set
+
+            // Update the button text according to the loaded preference
+            ToggleUnitButton.Text = isPerGallon ? "g/Gal" : "mL/L";
         }
 
         private void InitializeFertilizerEntryMappings()
@@ -109,9 +114,15 @@ namespace FertCalc2
 
         private void ToggleUnitButton_Clicked(object sender, EventArgs e)
         {
-            isPerGallon = !isPerGallon; // Toggle the flag
-            ToggleUnitButton.Text = isPerGallon ? "g/Gal" : "mL/L"; // Update button text
-            UpdateNutrientDisplays(); // Recalculate and update the display
+            // Toggle the unit preference
+            isPerGallon = !isPerGallon;
+
+            // Save the preference using Preferences
+            Preferences.Set("IsPerGallon", isPerGallon);
+
+            // Update UI elements accordingly
+            ToggleUnitButton.Text = isPerGallon ? "g/Gal" : "mL/L";
+            UpdateNutrientDisplays();
         }
 
         private void OnQuantityChanged(object sender, TextChangedEventArgs e)
