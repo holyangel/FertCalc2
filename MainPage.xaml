@@ -30,7 +30,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="22"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -80,8 +80,8 @@
         </Grid>
 
     <ScrollView HorizontalOptions="FillAndExpand">
-        <VerticalStackLayout Spacing="0" HorizontalOptions="FillAndExpand">
-            <Grid ColumnDefinitions="125,125,80" RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+        <VerticalStackLayout HorizontalOptions="FillAndExpand">
+            <Grid ColumnDefinitions="125,125,80" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
@@ -140,7 +140,7 @@
                         Title="Select a Mix"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center"
-                        Margin="-5" Grid.Row="0" Grid.Column="1"
+                        Margin="-5" Grid.Row="0" Grid.Column="1" WidthRequest="150"
                         SelectedIndexChanged="PredefinedMixesPicker_SelectedIndexChanged">
                     <!-- Items will be added programmatically -->
                 </Picker>
@@ -149,20 +149,20 @@
                        Title="Compare a Mix"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="Center"
-                       Margin="-5" Grid.Row="1" Grid.Column="1"
+                       Margin="-5" Grid.Row="1" Grid.Column="1" WidthRequest="150"
                        SelectedIndexChanged="ComparisonMixesPicker_SelectedIndexChanged">
                     <!-- Items will be added programmatically -->
                 </Picker>
                 <Button x:Name="DeleteMixButton"
                         Text="Delete Mix"
                         Grid.Row="0" Grid.Column="2"
-                        Margin="50,10,0,0" WidthRequest="115"
+                        Margin="75,10,0,0" WidthRequest="100"
                         Clicked="DeleteMixButton_Clicked"/>
 
                 <Button x:Name="ToggleUnitButton" 
                         Text="g/Gallon" 
                         Grid.Row="1" Grid.Column="2"
-                        Margin="50,10,0,0" WidthRequest="115"
+                        Margin="75,10,0,0" WidthRequest="100"
                         Clicked="ToggleUnitButton_Clicked"/>
 
                 <!-- Fertilizer Selection -->
