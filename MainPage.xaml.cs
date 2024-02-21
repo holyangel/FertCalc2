@@ -502,6 +502,29 @@ namespace FertCalc2
                         mix => mix.FertilizerQuantities.ToDictionary(fq => fq.Name, fq => fq.Quantity)
                     );
                 }
+
+
+        private async void DeleteMixButton_Clicked(object sender, EventArgs e)
+        {
+            var selectedMix = PredefinedMixesPicker.SelectedItem as string;
+            if (string.IsNullOrEmpty(selectedMix) || selectedMix == "Reset")
+            {
+                await DisplayAlert("Delete Mix", "No mix selected or cannot delete 'Reset' option.", "OK");
+                return;
+            }
+
+            bool confirmDelete = await DisplayAlert("Delete Mix", $"Are you sure you want to delete '{selectedMix}'?", "Yes", "No");
+            if (confirmDelete)
+            {
+                // Remove the selected mix
+                if (savedMixes.ContainsKey(selectedMix))
+                {
+                    savedMixes.Remove(selectedMix);
+                    SaveMixesToFile(); // Persist the removal to file
+                    RefreshMixesInPicker(); // Update UI
+                    ClearAllEntries(); // Optional: Clear the current mix details from the UI
+                    await DisplayAlert("Delete Mix", $"Mix '{selectedMix}' has been deleted.", "OK");
+                }
             }
         }
     }
