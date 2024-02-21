@@ -50,7 +50,7 @@ namespace FertCalc2
             isPerGallon = Preferences.Get("IsPerGallon", true); // Default to true if not set
 
             // Update the button text according to the loaded preference
-            ToggleUnitButton.Text = isPerGallon ? "g/Gal" : "mL/L";
+            ToggleUnitButton.Text = isPerGallon ? "g/Gallon" : "g/Liter";
         }
 
         private void InitializeFertilizerEntryMappings()
@@ -121,7 +121,7 @@ namespace FertCalc2
             Preferences.Set("IsPerGallon", isPerGallon);
 
             // Update UI elements accordingly
-            ToggleUnitButton.Text = isPerGallon ? "g/Gal" : "mL/L";
+            ToggleUnitButton.Text = isPerGallon ? "g/Gallon" : "g/Liter";
             UpdateNutrientDisplays();
         }
 
