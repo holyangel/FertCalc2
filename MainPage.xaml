@@ -9,10 +9,9 @@
         <ToolbarItem Text="Import" Clicked="OnImportClicked" />
         <ToolbarItem Text="Share" Clicked="OnExportClicked" />
     </ContentPage.ToolbarItems>
-    
-    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <!-- Totals Grid -->
-        <Grid AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional" AbsoluteLayout.LayoutBounds="0,-10.5,.2,1" Padding="10">
+    <Grid>
+    <!-- Totals Grid -->
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="125" />
             </Grid.ColumnDefinitions>
@@ -80,200 +79,200 @@
             <Label x:Name="CompPPM" Text="PPM: " Grid.Row="28" Grid.Column="0" IsVisible="False"/>
         </Grid>
 
-        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0" HorizontalOptions="FillAndExpand">
-            <VerticalStackLayout Spacing="0" HorizontalOptions="FillAndExpand">
-                <Grid ColumnDefinitions="115,125,80" RowSpacing="0" ColumnSpacing="-5" HorizontalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="54"/>
-                        <RowDefinition Height="54"/>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                    </Grid.RowDefinitions>
+    <ScrollView HorizontalOptions="FillAndExpand">
+        <VerticalStackLayout Spacing="0" HorizontalOptions="FillAndExpand">
+            <Grid ColumnDefinitions="125,125,80" RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="54"/>
+                    <RowDefinition Height="54"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="37"/>
+                </Grid.RowDefinitions>
 
-                    <Picker x:Name="PredefinedMixesPicker"
+                <Picker x:Name="PredefinedMixesPicker"
                         Title="Select a Mix"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center"
                         Margin="5" Grid.Row="0" Grid.Column="1"
                         SelectedIndexChanged="PredefinedMixesPicker_SelectedIndexChanged">
-                        <!-- Items will be added programmatically -->
-                    </Picker>
+                    <!-- Items will be added programmatically -->
+                </Picker>
 
-                    <Picker x:Name="ComparisonMixesPicker"
+                <Picker x:Name="ComparisonMixesPicker"
                        Title="Compare a Mix"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="Center"
                        Margin="5" Grid.Row="1" Grid.Column="1"
                        SelectedIndexChanged="ComparisonMixesPicker_SelectedIndexChanged">
-                        <!-- Items will be added programmatically -->
-                    </Picker>
-                    <Button x:Name="DeleteMixButton"
+                    <!-- Items will be added programmatically -->
+                </Picker>
+                <Button x:Name="DeleteMixButton"
                         Text="Delete"
                         Grid.Row="0" Grid.Column="2"
                         Margin="5"
                         Clicked="DeleteMixButton_Clicked"/>
 
-                    <Button x:Name="ToggleUnitButton" 
+                <Button x:Name="ToggleUnitButton" 
                         Text="g/Gal" 
                         Grid.Row="1" Grid.Column="2"
                         Margin="5"
                         Clicked="ToggleUnitButton_Clicked"/>
 
-                    <!-- Fertilizer Selection -->
-                    <Label Text="BioBizz Algamic" Grid.Row="3" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="BioBizzAlgamicBox" Placeholder="Quantity" Grid.Row="3" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="BioBizz Bloom" Grid.Row="4" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="BioBizzBloomBox" Placeholder="Quantity" Grid.Row="4" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="BioBizzGrow" Grid.Row="5" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="BioBizzGrowBox" Placeholder="Quantity" Grid.Row="5" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Calcium Nitrate" Grid.Row="6" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CalciumNitrateBox" Placeholder="Quantity" Grid.Row="6" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="CaliMagic" Grid.Row="7" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CaliMagicBox" Placeholder="Quantity" Grid.Row="7" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna Boost" Grid.Row="8" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaBoostBox" Placeholder="Quantity" Grid.Row="8" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna Calmag" Grid.Row="9" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaCalmagBox" Placeholder="Quantity" Grid.Row="9" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="CannaCoco A" Grid.Row="10" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaCocoABox" Placeholder="Quantity" Grid.Row="10" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="CannaCoco B" Grid.Row="11" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaCocoBBox" Placeholder="Quantity" Grid.Row="11" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna Flores A" Grid.Row="12" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaFloresABox" Placeholder="Quantity" Grid.Row="12" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna Flores B" Grid.Row="13" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaFloresBBox" Placeholder="Quantity" Grid.Row="13" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna PH Down" Grid.Row="14" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaPHDownBox" Placeholder="Quantity" Grid.Row="14" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna PK 13/14" Grid.Row="15" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaPK1314Box" Placeholder="Quantity" Grid.Row="15" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna Vega A" Grid.Row="16" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaVegaABox" Placeholder="Quantity" Grid.Row="16" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Canna Vega B" Grid.Row="17" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="CannaVegaBBox" Placeholder="Quantity" Grid.Row="17" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="DryPart Bloom" Grid.Row="18" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="DryPartBloomBox" Placeholder="Quantity" Grid.Row="18" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Epsom Salt" Grid.Row="19" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="EpsomSaltBox" Placeholder="Quantity" Grid.Row="19" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Gypsum" Grid.Row="20" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="GypsumBox" Placeholder="Quantity" Grid.Row="20" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 0-12-26" Grid.Row="21" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks01226Box" Placeholder="Quantity" Grid.Row="21" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 5-12-26" Grid.Row="22" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks51226Box" Placeholder="Quantity" Grid.Row="22" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 5-50-18" Grid.Row="23" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks55018Box" Placeholder="Quantity" Grid.Row="23" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 7-15-30" Grid.Row="24" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks71530Box" Placeholder="Quantity" Grid.Row="24" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 10-30-20" Grid.Row="25" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks103020Box" Placeholder="Quantity" Grid.Row="25" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 12-4-16" Grid.Row="26" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks12416Box" Placeholder="Quantity" Grid.Row="26" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 15-0-0" Grid.Row="27" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks1500Box" Placeholder="Quantity" Grid.Row="27" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 15-5-20" Grid.Row="28" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks15520Box" Placeholder="Quantity" Grid.Row="28" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 15-6-17" Grid.Row="29" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks15617Box" Placeholder="Quantity" Grid.Row="29" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 18-8-23" Grid.Row="30" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks18823Box" Placeholder="Quantity" Grid.Row="30" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 20-10-20" Grid.Row="31" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks201020Box" Placeholder="Quantity" Grid.Row="31" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Jacks 20-20-20" Grid.Row="32" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="Jacks202020Box" Placeholder="Quantity" Grid.Row="32" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="K-Trate LX" Grid.Row="33" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="KTrateLXBox" Placeholder="Quantity" Grid.Row="33" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Koolbloom" Grid.Row="34" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="KoolbloomBox" Placeholder="Quantity" Grid.Row="34" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="L.Koolbloom" Grid.Row="35" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="LKoolbloomBox" Placeholder="Quantity" Grid.Row="35" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MagNit" Grid.Row="36" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MagNitBox" Placeholder="Quantity" Grid.Row="36" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MAG-Trate LX" Grid.Row="37" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MagTrateLXBox" Placeholder="Quantity" Grid.Row="37" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MAP" Grid.Row="38" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MAPBox" Placeholder="Quantity" Grid.Row="38" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MaxiBloom" Grid.Row="39" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MaxiBloomBox" Placeholder="Quantity" Grid.Row="39" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MaxiGrow" Grid.Row="40" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MaxiGrowBox" Placeholder="Quantity" Grid.Row="40" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Megacrop" Grid.Row="41" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MegacropBox" Placeholder="Quantity" Grid.Row="41" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Megacrop A" Grid.Row="42" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MegacropABox" Placeholder="Quantity" Grid.Row="42" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Megacrop B" Grid.Row="43" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MegacropBBox" Placeholder="Quantity" Grid.Row="43" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MC Cal-Mag" Grid.Row="44" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MCCalMagBox" Placeholder="Quantity" Grid.Row="44" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MC Sweet Candy" Grid.Row="45" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MCSweetCandyBox" Placeholder="Quantity" Grid.Row="45" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MOAB" Grid.Row="46" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MOABBox" Placeholder="Quantity" Grid.Row="46" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="Monster Bloom" Grid.Row="47" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MonsterBloomBox" Placeholder="Quantity" Grid.Row="47" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="MPK" Grid.Row="48" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="MPKBox" Placeholder="Quantity" Grid.Row="48" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="PP Bloom" Grid.Row="49" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="PPBloomBox" Placeholder="Quantity" Grid.Row="49" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="PP Boost" Grid.Row="50" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="PPBoostBox" Placeholder="Quantity" Grid.Row="50" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="PP CalKick" Grid.Row="51" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="PPCalKickBox" Placeholder="Quantity" Grid.Row="51" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="PP Finisher" Grid.Row="52" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="PPFinisherBox" Placeholder="Quantity" Grid.Row="52" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="PP Grow" Grid.Row="53" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="PPGrowBox" Placeholder="Quantity" Grid.Row="53" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <Label Text="PP Spike" Grid.Row="54" Grid.Column="1" HeightRequest="22"/>
-                        <Entry x:Name="PPSpikeBox" Placeholder="Quantity" Grid.Row="54" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
-                    <!-- Add more fertilizers as needed -->
-                </Grid>
-            </VerticalStackLayout>
-        </ScrollView>
-    </AbsoluteLayout>
+                <!-- Fertilizer Selection -->
+                <Label Text="BioBizz Algamic" Grid.Row="3" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="BioBizzAlgamicBox" Placeholder="Quantity" Grid.Row="3" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="BioBizz Bloom" Grid.Row="4" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="BioBizzBloomBox" Placeholder="Quantity" Grid.Row="4" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="BioBizzGrow" Grid.Row="5" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="BioBizzGrowBox" Placeholder="Quantity" Grid.Row="5" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Calcium Nitrate" Grid.Row="6" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CalciumNitrateBox" Placeholder="Quantity" Grid.Row="6" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="CaliMagic" Grid.Row="7" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CaliMagicBox" Placeholder="Quantity" Grid.Row="7" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Boost" Grid.Row="8" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaBoostBox" Placeholder="Quantity" Grid.Row="8" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Calmag" Grid.Row="9" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaCalmagBox" Placeholder="Quantity" Grid.Row="9" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="CannaCoco A" Grid.Row="10" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaCocoABox" Placeholder="Quantity" Grid.Row="10" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="CannaCoco B" Grid.Row="11" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaCocoBBox" Placeholder="Quantity" Grid.Row="11" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Flores A" Grid.Row="12" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaFloresABox" Placeholder="Quantity" Grid.Row="12" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Flores B" Grid.Row="13" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaFloresBBox" Placeholder="Quantity" Grid.Row="13" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna PH Down" Grid.Row="14" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaPHDownBox" Placeholder="Quantity" Grid.Row="14" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna PK 13/14" Grid.Row="15" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaPK1314Box" Placeholder="Quantity" Grid.Row="15" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Vega A" Grid.Row="16" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaVegaABox" Placeholder="Quantity" Grid.Row="16" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Canna Vega B" Grid.Row="17" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="CannaVegaBBox" Placeholder="Quantity" Grid.Row="17" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="DryPart Bloom" Grid.Row="18" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="DryPartBloomBox" Placeholder="Quantity" Grid.Row="18" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Epsom Salt" Grid.Row="19" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="EpsomSaltBox" Placeholder="Quantity" Grid.Row="19" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Gypsum" Grid.Row="20" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="GypsumBox" Placeholder="Quantity" Grid.Row="20" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 0-12-26" Grid.Row="21" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks01226Box" Placeholder="Quantity" Grid.Row="21" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 5-12-26" Grid.Row="22" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks51226Box" Placeholder="Quantity" Grid.Row="22" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 5-50-18" Grid.Row="23" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks55018Box" Placeholder="Quantity" Grid.Row="23" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 7-15-30" Grid.Row="24" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks71530Box" Placeholder="Quantity" Grid.Row="24" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 10-30-20" Grid.Row="25" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks103020Box" Placeholder="Quantity" Grid.Row="25" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 12-4-16" Grid.Row="26" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks12416Box" Placeholder="Quantity" Grid.Row="26" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 15-0-0" Grid.Row="27" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks1500Box" Placeholder="Quantity" Grid.Row="27" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 15-5-20" Grid.Row="28" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks15520Box" Placeholder="Quantity" Grid.Row="28" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 15-6-17" Grid.Row="29" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks15617Box" Placeholder="Quantity" Grid.Row="29" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 18-8-23" Grid.Row="30" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks18823Box" Placeholder="Quantity" Grid.Row="30" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 20-10-20" Grid.Row="31" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks201020Box" Placeholder="Quantity" Grid.Row="31" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Jacks 20-20-20" Grid.Row="32" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="Jacks202020Box" Placeholder="Quantity" Grid.Row="32" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="K-Trate LX" Grid.Row="33" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="KTrateLXBox" Placeholder="Quantity" Grid.Row="33" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Koolbloom" Grid.Row="34" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="KoolbloomBox" Placeholder="Quantity" Grid.Row="34" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="L.Koolbloom" Grid.Row="35" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="LKoolbloomBox" Placeholder="Quantity" Grid.Row="35" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MagNit" Grid.Row="36" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MagNitBox" Placeholder="Quantity" Grid.Row="36" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MAG-Trate LX" Grid.Row="37" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MagTrateLXBox" Placeholder="Quantity" Grid.Row="37" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MAP" Grid.Row="38" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MAPBox" Placeholder="Quantity" Grid.Row="38" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MaxiBloom" Grid.Row="39" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MaxiBloomBox" Placeholder="Quantity" Grid.Row="39" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MaxiGrow" Grid.Row="40" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MaxiGrowBox" Placeholder="Quantity" Grid.Row="40" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Megacrop" Grid.Row="41" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MegacropBox" Placeholder="Quantity" Grid.Row="41" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Megacrop A" Grid.Row="42" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MegacropABox" Placeholder="Quantity" Grid.Row="42" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Megacrop B" Grid.Row="43" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MegacropBBox" Placeholder="Quantity" Grid.Row="43" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MC Cal-Mag" Grid.Row="44" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MCCalMagBox" Placeholder="Quantity" Grid.Row="44" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MC Sweet Candy" Grid.Row="45" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MCSweetCandyBox" Placeholder="Quantity" Grid.Row="45" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MOAB" Grid.Row="46" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MOABBox" Placeholder="Quantity" Grid.Row="46" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="Monster Bloom" Grid.Row="47" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MonsterBloomBox" Placeholder="Quantity" Grid.Row="47" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="MPK" Grid.Row="48" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="MPKBox" Placeholder="Quantity" Grid.Row="48" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Bloom" Grid.Row="49" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="PPBloomBox" Placeholder="Quantity" Grid.Row="49" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Boost" Grid.Row="50" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="PPBoostBox" Placeholder="Quantity" Grid.Row="50" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP CalKick" Grid.Row="51" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="PPCalKickBox" Placeholder="Quantity" Grid.Row="51" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Finisher" Grid.Row="52" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="PPFinisherBox" Placeholder="Quantity" Grid.Row="52" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Grow" Grid.Row="53" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="PPGrowBox" Placeholder="Quantity" Grid.Row="53" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <Label Text="PP Spike" Grid.Row="54" Grid.Column="1" HeightRequest="22"/>
+                <Entry x:Name="PPSpikeBox" Placeholder="Quantity" Grid.Row="54" Grid.Column="2" Keyboard="Numeric" TextChanged="OnQuantityChanged"/>
+                <!-- Add more fertilizers as needed -->
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+    </Grid>
 </ContentPage>
