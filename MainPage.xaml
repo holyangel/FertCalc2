@@ -1,10 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FertCalc2.MainPage"
              Title="Fertilizer Calculator">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="SaveMixButton_Clicked" />
         <ToolbarItem Text="Import" Clicked="OnImportClicked" />
         <ToolbarItem Text="Share" Clicked="OnExportClicked" />
     </ContentPage.ToolbarItems>
@@ -13,7 +14,7 @@
         <!-- Totals Grid -->
         <Grid AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional" AbsoluteLayout.LayoutBounds="0,-10.5,.2,1" Padding="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="115" />
+                <ColumnDefinition Width="125" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
@@ -48,7 +49,7 @@
                 <RowDefinition Height="22"/>
             </Grid.RowDefinitions>
             <!-- Totals Labels  -->
-            <Label Text="Elements" FontSize="Medium" Grid.Row="0" Grid.Column="0" WidthRequest="125"/>
+            <Label Text="Elements" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
             <Label x:Name="TotalNitrogen" Text="(N): " Grid.Row="1" Grid.Column="0"/>
             <Label x:Name="TotalPhosphorous" Text="(P): " Grid.Row="2" Grid.Column="0"/>
             <Label x:Name="TotalPotassium" Text="(K): " Grid.Row="3" Grid.Column="0"/>
@@ -63,7 +64,7 @@
             <Label x:Name="TotalMolybdenum" Text="(Mo): " Grid.Row="12" Grid.Column="0"/>
             <Label x:Name="PPM" Text="PPM: " Grid.Row="13" Grid.Column="0"/>
 
-            <Label x:Name="Compare" Text="Compare" FontSize="Medium" Grid.Row="15" Grid.Column="0" WidthRequest="125" IsVisible="False"/>
+            <Label x:Name="Compare" Text="Compare" FontSize="Medium" Grid.Row="15" Grid.Column="0" IsVisible="False"/>
             <Label x:Name="CompNitrogen" Text="(N): " Grid.Row="16" Grid.Column="0" IsVisible="False"/>
             <Label x:Name="CompPhosphorous" Text="(P): " Grid.Row="17" Grid.Column="0" IsVisible="False"/>
             <Label x:Name="CompPotassium" Text="(K): " Grid.Row="18" Grid.Column="0" IsVisible="False"/>
@@ -81,7 +82,7 @@
 
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="0" HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Spacing="0" HorizontalOptions="FillAndExpand">
-                <Grid ColumnDefinitions="115,125,80,80" RowSpacing="0" ColumnSpacing="-5" HorizontalOptions="FillAndExpand">
+                <Grid ColumnDefinitions="115,125,80" RowSpacing="0" ColumnSpacing="-5" HorizontalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="54"/>
                         <RowDefinition Height="54"/>
@@ -153,18 +154,17 @@
                        SelectedIndexChanged="ComparisonMixesPicker_SelectedIndexChanged">
                         <!-- Items will be added programmatically -->
                     </Picker>
-                    <Button x:Name="SaveMixButton"
-                        Text="Save"
-                        Grid.Row="0" Grid.Column="2"
-                        Margin="5"
-                        Clicked="SaveMixButton_Clicked"/>
                     <Button x:Name="DeleteMixButton"
                         Text="Delete"
-                        Grid.Row="0" Grid.Column="3"
+                        Grid.Row="0" Grid.Column="2"
                         Margin="5"
                         Clicked="DeleteMixButton_Clicked"/>
 
-                    <Button x:Name="ToggleUnitButton" Text="g/Gal" Clicked="ToggleUnitButton_Clicked" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                    <Button x:Name="ToggleUnitButton" 
+                        Text="g/Gal" 
+                        Grid.Row="1" Grid.Column="2"
+                        Margin="5"
+                        Clicked="ToggleUnitButton_Clicked"/>
 
                     <!-- Fertilizer Selection -->
                     <Label Text="BioBizz Algamic" Grid.Row="3" Grid.Column="1" HeightRequest="22"/>
